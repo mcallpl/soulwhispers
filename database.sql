@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS soulwhispers CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE soulwhispers;
+
+CREATE TABLE IF NOT EXISTS poems (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  subtitle VARCHAR(255) DEFAULT NULL,
+  lyrics LONGTEXT DEFAULT NULL,
+  audio_filename VARCHAR(255) NOT NULL,
+  cover_image VARCHAR(255) DEFAULT NULL,
+  sort_order INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_sort_order (sort_order),
+  INDEX idx_created_at (created_at)
+);

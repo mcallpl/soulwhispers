@@ -88,6 +88,7 @@ if ($result) {
                 <span class="logged-in-user">Logged in as: <strong><?php echo get_admin_username(); ?></strong></span>
                 <?php if (is_super_admin()): ?>
                 <a href="batch-upload.php" class="btn btn-primary">⚡ Batch Upload</a>
+                <a href="analytics.php" class="btn btn-primary">📊 Analytics</a>
                 <?php endif; ?>
                 <a href="upload.php" class="btn btn-secondary">+ Single Poem</a>
                 <a href="../index.php" class="btn btn-secondary" target="_blank">👁️ View Gallery</a>

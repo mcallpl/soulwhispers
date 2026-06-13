@@ -34,6 +34,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Verify password using bcrypt
                 if (password_verify($password, $user['password_hash'])) {
+                    // Track login: update last_login_at and increment login_count
+                    $updateQuery = "UPDATE admin_users SET last_login_at = NOW(), login_count = login_count + 1 WHERE id = ?";
+                    $updateStmt = $conn->prepare($updateQuery);
+                    if ($updateStmt) {
+                        $updateStmt->bind_param('i', $user['id']);
+                        $updateStmt->execute();
+                        $updateStmt->close();
+                    }
+
                     $_SESSION['admin_authenticated'] = true;
                     $_SESSION['admin_user_id'] = $user['id'];
                     $_SESSION['admin_username'] = $user['username'];
